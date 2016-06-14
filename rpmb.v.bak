@@ -1,0 +1,43 @@
+`timescale 10ns/1ns 
+
+module rpmb(cs, mode, a0, rbusdir, md, clk, rint, rwait, rsw0, rsw1, mswout, maddr, mdata, mm1, 
+              mreset, msltsl, mmreq, miorq, mwr, mrd, mbusdir, msx_clk,
+				  mcs1, mcs2, mcs12, mswout, mint, mwait, msw0, msw1, ready
+				  );
+
+input cs;
+input mode;
+input a0;
+inout reg [15:0]  md;
+
+input clk;
+
+output wire rbusdir;
+output wire rint;
+output wire rwait;
+output wire rsw0;
+output wire rsw1;
+
+output reg [15:0] maddr;
+inout  reg  [7:0] mdata;
+output reg [1:0] msltsl;
+output reg mmreq;
+output reg miorq;
+output reg mwr;
+output reg mrd;
+output reg mm1;
+output wire mcs1;
+output wire mcs2;
+output wire mcs12;
+output wire mswout;
+output reg mreset;
+output reg msx_clk;
+output reg ready;
+
+input  mbusdir;
+input  mint;
+input  mwait;
+input  msw0;
+input  msw1;
+reg [2:0] clkcount;
+reg [5:0] cnt;

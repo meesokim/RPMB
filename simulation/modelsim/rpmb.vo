@@ -1,0 +1,3142 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// VENDOR "Altera"
+// PROGRAM "Quartus II 64-Bit"
+// VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
+
+// DATE "06/15/2016 03:42:38"
+
+// 
+// Device: Altera EPM240T100C5 Package TQFP100
+// 
+
+// 
+// This Verilog file should be used for ModelSim (Verilog) only
+// 
+
+`timescale 1 ps/ 1 ps
+
+module rpmb (
+	cs,
+	a0,
+	rw,
+	rmirq,
+	rbusdir,
+	md,
+	rint,
+	rwait,
+	maddr,
+	mdata,
+	mreset,
+	msltsl,
+	mmreq,
+	miorq,
+	mwr,
+	mrd,
+	mbusdir,
+	msx_clk,
+	mcs1,
+	mcs2,
+	mcs12,
+	mint,
+	mwait,
+	mm1,
+	clk);
+output 	cs;
+input 	a0;
+output 	rw;
+output 	rmirq;
+input 	rbusdir;
+inout 	[15:0] md;
+input 	rint;
+input 	rwait;
+input 	[15:0] maddr;
+inout 	[7:0] mdata;
+inout 	mreset;
+input 	msltsl;
+input 	mmreq;
+input 	miorq;
+input 	mwr;
+input 	mrd;
+input 	mbusdir;
+input 	msx_clk;
+input 	mcs1;
+input 	mcs2;
+input 	mcs12;
+input 	mint;
+output 	mwait;
+input 	mm1;
+input 	clk;
+
+// Design Ports Information
+// cs	=>  Location: PIN_30,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// rw	=>  Location: PIN_53,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// rmirq	=>  Location: PIN_29,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// rbusdir	=>  Location: PIN_28,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// rint	=>  Location: PIN_26,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// miorq	=>  Location: PIN_85,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mbusdir	=>  Location: PIN_84,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mcs1	=>  Location: PIN_75,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mcs2	=>  Location: PIN_74,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mcs12	=>  Location: PIN_77,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mint	=>  Location: PIN_82,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mwait	=>  Location: PIN_81,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// mm1	=>  Location: PIN_83,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mreset	=>  Location: PIN_89,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[0]	=>  Location: PIN_36,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[1]	=>  Location: PIN_39,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[2]	=>  Location: PIN_56,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[3]	=>  Location: PIN_57,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[4]	=>  Location: PIN_55,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[5]	=>  Location: PIN_37,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[6]	=>  Location: PIN_35,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[7]	=>  Location: PIN_38,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[8]	=>  Location: PIN_40,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[9]	=>  Location: PIN_43,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[10]	=>  Location: PIN_47,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[11]	=>  Location: PIN_41,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[12]	=>  Location: PIN_34,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[13]	=>  Location: PIN_33,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[14]	=>  Location: PIN_54,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// md[15]	=>  Location: PIN_52,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// mdata[0]	=>  Location: PIN_14,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// mdata[1]	=>  Location: PIN_12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// mdata[2]	=>  Location: PIN_16,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// mdata[3]	=>  Location: PIN_15,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// mdata[4]	=>  Location: PIN_18,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// mdata[5]	=>  Location: PIN_17,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// mdata[6]	=>  Location: PIN_20,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// mdata[7]	=>  Location: PIN_19,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+// msltsl	=>  Location: PIN_76,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// msx_clk	=>  Location: PIN_21,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mrd	=>  Location: PIN_88,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mmreq	=>  Location: PIN_86,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// rwait	=>  Location: PIN_49,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// clk	=>  Location: PIN_64,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// a0	=>  Location: PIN_50,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// mwr	=>  Location: PIN_87,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[0]	=>  Location: PIN_3,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[1]	=>  Location: PIN_2,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[2]	=>  Location: PIN_5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[3]	=>  Location: PIN_4,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[4]	=>  Location: PIN_7,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[5]	=>  Location: PIN_6,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[6]	=>  Location: PIN_97,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[7]	=>  Location: PIN_96,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[8]	=>  Location: PIN_99,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[9]	=>  Location: PIN_90,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[10]	=>  Location: PIN_95,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[11]	=>  Location: PIN_92,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[12]	=>  Location: PIN_98,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[13]	=>  Location: PIN_1,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[14]	=>  Location: PIN_100,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// maddr[15]	=>  Location: PIN_91,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+tri1 devclrn;
+tri1 devpor;
+tri1 devoe;
+// synopsys translate_off
+initial $sdf_annotate("rpmb_v.sdo");
+// synopsys translate_on
+
+wire \mdata[0]~0 ;
+wire \mdata[1]~1 ;
+wire \mdata[2]~2 ;
+wire \mdata[3]~3 ;
+wire \mdata[4]~4 ;
+wire \mdata[5]~5 ;
+wire \mdata[6]~6 ;
+wire \mdata[7]~7 ;
+wire \msx_clk~combout ;
+wire \msltsl~combout ;
+wire \cs~reg0_regout ;
+wire \mrd~combout ;
+wire \rw~reg0_regout ;
+wire \mmreq~combout ;
+wire \rmirq~reg0_regout ;
+wire \rwait~combout ;
+wire \mwait~reg0_regout ;
+wire \clk~combout ;
+wire \a0~combout ;
+wire \mwr~combout ;
+wire \wdata[0]~0_combout ;
+wire \md[0]~32_combout ;
+wire \md[0]~reg0_regout ;
+wire \md[1]~reg0_regout ;
+wire \md[2]~reg0_regout ;
+wire \md[3]~reg0_regout ;
+wire \md[4]~reg0_regout ;
+wire \md[5]~reg0_regout ;
+wire \md[6]~reg0_regout ;
+wire \md[7]~reg0_regout ;
+wire \md[8]~reg0_regout ;
+wire \md[9]~reg0_regout ;
+wire \md[10]~reg0_regout ;
+wire \md[11]~reg0_regout ;
+wire \md[12]~reg0_regout ;
+wire \md[13]~reg0_regout ;
+wire \md[14]~reg0_regout ;
+wire \md[15]~reg0_regout ;
+wire \rdata[0]~0_combout ;
+wire \mdata[7]~16_combout ;
+wire \mdata[0]~reg0_regout ;
+wire \mdata[1]~reg0_regout ;
+wire \mdata[2]~reg0_regout ;
+wire \mdata[3]~reg0_regout ;
+wire \mdata[4]~reg0_regout ;
+wire \mdata[5]~reg0_regout ;
+wire \mdata[6]~reg0_regout ;
+wire \mdata[7]~reg0_regout ;
+wire [7:0] wdata;
+wire [7:0] rdata;
+wire [15:0] raddr;
+wire [15:0] \maddr~combout ;
+
+
+// Location: PIN_14,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mdata[0]~I (
+	.datain(\mdata[0]~reg0_regout ),
+	.oe(gnd),
+	.combout(\mdata[0]~0 ),
+	.padio(mdata[0]));
+// synopsys translate_off
+defparam \mdata[0]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mdata[1]~I (
+	.datain(\mdata[1]~reg0_regout ),
+	.oe(gnd),
+	.combout(\mdata[1]~1 ),
+	.padio(mdata[1]));
+// synopsys translate_off
+defparam \mdata[1]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_16,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mdata[2]~I (
+	.datain(\mdata[2]~reg0_regout ),
+	.oe(gnd),
+	.combout(\mdata[2]~2 ),
+	.padio(mdata[2]));
+// synopsys translate_off
+defparam \mdata[2]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_15,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mdata[3]~I (
+	.datain(\mdata[3]~reg0_regout ),
+	.oe(gnd),
+	.combout(\mdata[3]~3 ),
+	.padio(mdata[3]));
+// synopsys translate_off
+defparam \mdata[3]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_18,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mdata[4]~I (
+	.datain(\mdata[4]~reg0_regout ),
+	.oe(gnd),
+	.combout(\mdata[4]~4 ),
+	.padio(mdata[4]));
+// synopsys translate_off
+defparam \mdata[4]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_17,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mdata[5]~I (
+	.datain(\mdata[5]~reg0_regout ),
+	.oe(gnd),
+	.combout(\mdata[5]~5 ),
+	.padio(mdata[5]));
+// synopsys translate_off
+defparam \mdata[5]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_20,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mdata[6]~I (
+	.datain(\mdata[6]~reg0_regout ),
+	.oe(gnd),
+	.combout(\mdata[6]~6 ),
+	.padio(mdata[6]));
+// synopsys translate_off
+defparam \mdata[6]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_19,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mdata[7]~I (
+	.datain(\mdata[7]~reg0_regout ),
+	.oe(gnd),
+	.combout(\mdata[7]~7 ),
+	.padio(mdata[7]));
+// synopsys translate_off
+defparam \mdata[7]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_21,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \msx_clk~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\msx_clk~combout ),
+	.padio(msx_clk));
+// synopsys translate_off
+defparam \msx_clk~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_76,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \msltsl~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\msltsl~combout ),
+	.padio(msltsl));
+// synopsys translate_off
+defparam \msltsl~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X4_Y2_N5
+maxii_lcell \cs~reg0 (
+// Equation(s):
+// \cs~reg0_regout  = DFFEAS((((!\msltsl~combout ))), !GLOBAL(\msx_clk~combout ), VCC, , , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\msltsl~combout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\cs~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \cs~reg0 .lut_mask = "00ff";
+defparam \cs~reg0 .operation_mode = "normal";
+defparam \cs~reg0 .output_mode = "reg_only";
+defparam \cs~reg0 .register_cascade_mode = "off";
+defparam \cs~reg0 .sum_lutc_input = "datac";
+defparam \cs~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_88,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \mrd~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\mrd~combout ),
+	.padio(mrd));
+// synopsys translate_off
+defparam \mrd~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X7_Y3_N7
+maxii_lcell \rw~reg0 (
+// Equation(s):
+// \rw~reg0_regout  = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , \mrd~combout , , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\mrd~combout ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\rw~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rw~reg0 .lut_mask = "0000";
+defparam \rw~reg0 .operation_mode = "normal";
+defparam \rw~reg0 .output_mode = "reg_only";
+defparam \rw~reg0 .register_cascade_mode = "off";
+defparam \rw~reg0 .sum_lutc_input = "datac";
+defparam \rw~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_86,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \mmreq~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\mmreq~combout ),
+	.padio(mmreq));
+// synopsys translate_off
+defparam \mmreq~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X4_Y2_N2
+maxii_lcell \rmirq~reg0 (
+// Equation(s):
+// \rmirq~reg0_regout  = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , \mmreq~combout , , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\mmreq~combout ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\rmirq~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rmirq~reg0 .lut_mask = "0000";
+defparam \rmirq~reg0 .operation_mode = "normal";
+defparam \rmirq~reg0 .output_mode = "reg_only";
+defparam \rmirq~reg0 .register_cascade_mode = "off";
+defparam \rmirq~reg0 .sum_lutc_input = "datac";
+defparam \rmirq~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_49,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \rwait~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\rwait~combout ),
+	.padio(rwait));
+// synopsys translate_off
+defparam \rwait~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X6_Y2_N2
+maxii_lcell \mwait~reg0 (
+// Equation(s):
+// \mwait~reg0_regout  = DFFEAS((((\rwait~combout ))), !GLOBAL(\msx_clk~combout ), VCC, , , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\rwait~combout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\mwait~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mwait~reg0 .lut_mask = "ff00";
+defparam \mwait~reg0 .operation_mode = "normal";
+defparam \mwait~reg0 .output_mode = "reg_only";
+defparam \mwait~reg0 .register_cascade_mode = "off";
+defparam \mwait~reg0 .sum_lutc_input = "datac";
+defparam \mwait~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_64,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \clk~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\clk~combout ),
+	.padio(clk));
+// synopsys translate_off
+defparam \clk~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_50,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \a0~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\a0~combout ),
+	.padio(a0));
+// synopsys translate_off
+defparam \a0~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_87,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \mwr~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\mwr~combout ),
+	.padio(mwr));
+// synopsys translate_off
+defparam \mwr~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N5
+maxii_lcell \wdata[0]~0 (
+// Equation(s):
+// \wdata[0]~0_combout  = (((!\mwr~combout  & !\msltsl~combout )))
+
+	.clk(gnd),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\mwr~combout ),
+	.datad(\msltsl~combout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(\wdata[0]~0_combout ),
+	.regout(),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \wdata[0]~0 .lut_mask = "000f";
+defparam \wdata[0]~0 .operation_mode = "normal";
+defparam \wdata[0]~0 .output_mode = "comb_only";
+defparam \wdata[0]~0 .register_cascade_mode = "off";
+defparam \wdata[0]~0 .sum_lutc_input = "datac";
+defparam \wdata[0]~0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X4_Y3_N2
+maxii_lcell \wdata[0] (
+// Equation(s):
+// wdata[0] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \wdata[0]~0_combout , \mdata[0]~0 , , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\mdata[0]~0 ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\wdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(wdata[0]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \wdata[0] .lut_mask = "0000";
+defparam \wdata[0] .operation_mode = "normal";
+defparam \wdata[0] .output_mode = "reg_only";
+defparam \wdata[0] .register_cascade_mode = "off";
+defparam \wdata[0] .sum_lutc_input = "datac";
+defparam \wdata[0] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_3,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[0]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [0]),
+	.padio(maddr[0]));
+// synopsys translate_off
+defparam \maddr[0]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N4
+maxii_lcell \raddr[0] (
+// Equation(s):
+// raddr[0] = DFFEAS((((\maddr~combout [0]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\maddr~combout [0]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[0]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[0] .lut_mask = "ff00";
+defparam \raddr[0] .operation_mode = "normal";
+defparam \raddr[0] .output_mode = "reg_only";
+defparam \raddr[0] .register_cascade_mode = "off";
+defparam \raddr[0] .sum_lutc_input = "datac";
+defparam \raddr[0] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N4
+maxii_lcell \md[0]~32 (
+// Equation(s):
+// \md[0]~32_combout  = ((\a0~combout  & (!\mwr~combout  & !\msltsl~combout )))
+
+	.clk(gnd),
+	.dataa(vcc),
+	.datab(\a0~combout ),
+	.datac(\mwr~combout ),
+	.datad(\msltsl~combout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(\md[0]~32_combout ),
+	.regout(),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[0]~32 .lut_mask = "000c";
+defparam \md[0]~32 .operation_mode = "normal";
+defparam \md[0]~32 .output_mode = "comb_only";
+defparam \md[0]~32 .register_cascade_mode = "off";
+defparam \md[0]~32 .sum_lutc_input = "datac";
+defparam \md[0]~32 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N7
+maxii_lcell \md[0]~reg0 (
+// Equation(s):
+// \md[0]~reg0_regout  = DFFEAS((\a0~combout  & (\md[0]~reg0_regout )) # (!\a0~combout  & (((raddr[0])))), !GLOBAL(\clk~combout ), VCC, , , wdata[0], , , \md[0]~32_combout )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(\md[0]~reg0_regout ),
+	.datac(wdata[0]),
+	.datad(raddr[0]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(\md[0]~32_combout ),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[0]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[0]~reg0 .lut_mask = "dd88";
+defparam \md[0]~reg0 .operation_mode = "normal";
+defparam \md[0]~reg0 .output_mode = "reg_only";
+defparam \md[0]~reg0 .register_cascade_mode = "off";
+defparam \md[0]~reg0 .sum_lutc_input = "datac";
+defparam \md[0]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X4_Y3_N0
+maxii_lcell \wdata[1] (
+// Equation(s):
+// wdata[1] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \wdata[0]~0_combout , \mdata[1]~1 , , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\mdata[1]~1 ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\wdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(wdata[1]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \wdata[1] .lut_mask = "0000";
+defparam \wdata[1] .operation_mode = "normal";
+defparam \wdata[1] .output_mode = "reg_only";
+defparam \wdata[1] .register_cascade_mode = "off";
+defparam \wdata[1] .sum_lutc_input = "datac";
+defparam \wdata[1] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_2,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[1]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [1]),
+	.padio(maddr[1]));
+// synopsys translate_off
+defparam \maddr[1]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N9
+maxii_lcell \raddr[1] (
+// Equation(s):
+// raddr[1] = DFFEAS((((\maddr~combout [1]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\maddr~combout [1]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[1]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[1] .lut_mask = "ff00";
+defparam \raddr[1] .operation_mode = "normal";
+defparam \raddr[1] .output_mode = "reg_only";
+defparam \raddr[1] .register_cascade_mode = "off";
+defparam \raddr[1] .sum_lutc_input = "datac";
+defparam \raddr[1] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N0
+maxii_lcell \md[1]~reg0 (
+// Equation(s):
+// \md[1]~reg0_regout  = DFFEAS((\a0~combout  & (\md[1]~reg0_regout )) # (!\a0~combout  & (((raddr[1])))), !GLOBAL(\clk~combout ), VCC, , , wdata[1], , , \md[0]~32_combout )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(\md[1]~reg0_regout ),
+	.datac(wdata[1]),
+	.datad(raddr[1]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(\md[0]~32_combout ),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[1]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[1]~reg0 .lut_mask = "dd88";
+defparam \md[1]~reg0 .operation_mode = "normal";
+defparam \md[1]~reg0 .output_mode = "reg_only";
+defparam \md[1]~reg0 .register_cascade_mode = "off";
+defparam \md[1]~reg0 .sum_lutc_input = "datac";
+defparam \md[1]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X4_Y3_N9
+maxii_lcell \wdata[2] (
+// Equation(s):
+// wdata[2] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \wdata[0]~0_combout , \mdata[2]~2 , , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\mdata[2]~2 ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\wdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(wdata[2]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \wdata[2] .lut_mask = "0000";
+defparam \wdata[2] .operation_mode = "normal";
+defparam \wdata[2] .output_mode = "reg_only";
+defparam \wdata[2] .register_cascade_mode = "off";
+defparam \wdata[2] .sum_lutc_input = "datac";
+defparam \wdata[2] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[2]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [2]),
+	.padio(maddr[2]));
+// synopsys translate_off
+defparam \maddr[2]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N8
+maxii_lcell \raddr[2] (
+// Equation(s):
+// raddr[2] = DFFEAS((((\maddr~combout [2]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\maddr~combout [2]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[2]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[2] .lut_mask = "ff00";
+defparam \raddr[2] .operation_mode = "normal";
+defparam \raddr[2] .output_mode = "reg_only";
+defparam \raddr[2] .register_cascade_mode = "off";
+defparam \raddr[2] .sum_lutc_input = "datac";
+defparam \raddr[2] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N2
+maxii_lcell \md[2]~reg0 (
+// Equation(s):
+// \md[2]~reg0_regout  = DFFEAS((\a0~combout  & (\md[2]~reg0_regout )) # (!\a0~combout  & (((raddr[2])))), !GLOBAL(\clk~combout ), VCC, , , wdata[2], , , \md[0]~32_combout )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(\md[2]~reg0_regout ),
+	.datac(wdata[2]),
+	.datad(raddr[2]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(\md[0]~32_combout ),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[2]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[2]~reg0 .lut_mask = "dd88";
+defparam \md[2]~reg0 .operation_mode = "normal";
+defparam \md[2]~reg0 .output_mode = "reg_only";
+defparam \md[2]~reg0 .register_cascade_mode = "off";
+defparam \md[2]~reg0 .sum_lutc_input = "datac";
+defparam \md[2]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X4_Y3_N3
+maxii_lcell \wdata[3] (
+// Equation(s):
+// wdata[3] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \wdata[0]~0_combout , \mdata[3]~3 , , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\mdata[3]~3 ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\wdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(wdata[3]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \wdata[3] .lut_mask = "0000";
+defparam \wdata[3] .operation_mode = "normal";
+defparam \wdata[3] .output_mode = "reg_only";
+defparam \wdata[3] .register_cascade_mode = "off";
+defparam \wdata[3] .sum_lutc_input = "datac";
+defparam \wdata[3] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_4,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[3]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [3]),
+	.padio(maddr[3]));
+// synopsys translate_off
+defparam \maddr[3]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N1
+maxii_lcell \raddr[3] (
+// Equation(s):
+// raddr[3] = DFFEAS((((\maddr~combout [3]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\maddr~combout [3]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[3]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[3] .lut_mask = "ff00";
+defparam \raddr[3] .operation_mode = "normal";
+defparam \raddr[3] .output_mode = "reg_only";
+defparam \raddr[3] .register_cascade_mode = "off";
+defparam \raddr[3] .sum_lutc_input = "datac";
+defparam \raddr[3] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N5
+maxii_lcell \md[3]~reg0 (
+// Equation(s):
+// \md[3]~reg0_regout  = DFFEAS((\a0~combout  & (\md[3]~reg0_regout )) # (!\a0~combout  & (((raddr[3])))), !GLOBAL(\clk~combout ), VCC, , , wdata[3], , , \md[0]~32_combout )
+
+	.clk(!\clk~combout ),
+	.dataa(\md[3]~reg0_regout ),
+	.datab(\a0~combout ),
+	.datac(wdata[3]),
+	.datad(raddr[3]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(\md[0]~32_combout ),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[3]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[3]~reg0 .lut_mask = "bb88";
+defparam \md[3]~reg0 .operation_mode = "normal";
+defparam \md[3]~reg0 .output_mode = "reg_only";
+defparam \md[3]~reg0 .register_cascade_mode = "off";
+defparam \md[3]~reg0 .sum_lutc_input = "datac";
+defparam \md[3]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X4_Y3_N6
+maxii_lcell \wdata[4] (
+// Equation(s):
+// wdata[4] = DFFEAS((((\mdata[4]~4 ))), !GLOBAL(\msx_clk~combout ), VCC, , \wdata[0]~0_combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\mdata[4]~4 ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\wdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(wdata[4]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \wdata[4] .lut_mask = "ff00";
+defparam \wdata[4] .operation_mode = "normal";
+defparam \wdata[4] .output_mode = "reg_only";
+defparam \wdata[4] .register_cascade_mode = "off";
+defparam \wdata[4] .sum_lutc_input = "datac";
+defparam \wdata[4] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_7,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[4]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [4]),
+	.padio(maddr[4]));
+// synopsys translate_off
+defparam \maddr[4]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N3
+maxii_lcell \raddr[4] (
+// Equation(s):
+// raddr[4] = DFFEAS((((\maddr~combout [4]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\maddr~combout [4]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[4]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[4] .lut_mask = "ff00";
+defparam \raddr[4] .operation_mode = "normal";
+defparam \raddr[4] .output_mode = "reg_only";
+defparam \raddr[4] .register_cascade_mode = "off";
+defparam \raddr[4] .sum_lutc_input = "datac";
+defparam \raddr[4] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X3_Y3_N6
+maxii_lcell \md[4]~reg0 (
+// Equation(s):
+// \md[4]~reg0_regout  = DFFEAS((\a0~combout  & (\md[4]~reg0_regout )) # (!\a0~combout  & (((raddr[4])))), !GLOBAL(\clk~combout ), VCC, , , wdata[4], , , \md[0]~32_combout )
+
+	.clk(!\clk~combout ),
+	.dataa(\md[4]~reg0_regout ),
+	.datab(\a0~combout ),
+	.datac(wdata[4]),
+	.datad(raddr[4]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(\md[0]~32_combout ),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[4]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[4]~reg0 .lut_mask = "bb88";
+defparam \md[4]~reg0 .operation_mode = "normal";
+defparam \md[4]~reg0 .output_mode = "reg_only";
+defparam \md[4]~reg0 .register_cascade_mode = "off";
+defparam \md[4]~reg0 .sum_lutc_input = "datac";
+defparam \md[4]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X4_Y3_N8
+maxii_lcell \wdata[5] (
+// Equation(s):
+// wdata[5] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \wdata[0]~0_combout , \mdata[5]~5 , , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\mdata[5]~5 ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\wdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(wdata[5]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \wdata[5] .lut_mask = "0000";
+defparam \wdata[5] .operation_mode = "normal";
+defparam \wdata[5] .output_mode = "reg_only";
+defparam \wdata[5] .register_cascade_mode = "off";
+defparam \wdata[5] .sum_lutc_input = "datac";
+defparam \wdata[5] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_6,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[5]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [5]),
+	.padio(maddr[5]));
+// synopsys translate_off
+defparam \maddr[5]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N9
+maxii_lcell \raddr[5] (
+// Equation(s):
+// raddr[5] = DFFEAS((((\maddr~combout [5]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\maddr~combout [5]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[5]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[5] .lut_mask = "ff00";
+defparam \raddr[5] .operation_mode = "normal";
+defparam \raddr[5] .output_mode = "reg_only";
+defparam \raddr[5] .register_cascade_mode = "off";
+defparam \raddr[5] .sum_lutc_input = "datac";
+defparam \raddr[5] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N7
+maxii_lcell \md[5]~reg0 (
+// Equation(s):
+// \md[5]~reg0_regout  = DFFEAS((\a0~combout  & (\md[5]~reg0_regout )) # (!\a0~combout  & (((raddr[5])))), !GLOBAL(\clk~combout ), VCC, , , wdata[5], , , \md[0]~32_combout )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(\md[5]~reg0_regout ),
+	.datac(wdata[5]),
+	.datad(raddr[5]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(\md[0]~32_combout ),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[5]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[5]~reg0 .lut_mask = "dd88";
+defparam \md[5]~reg0 .operation_mode = "normal";
+defparam \md[5]~reg0 .output_mode = "reg_only";
+defparam \md[5]~reg0 .register_cascade_mode = "off";
+defparam \md[5]~reg0 .sum_lutc_input = "datac";
+defparam \md[5]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X4_Y3_N1
+maxii_lcell \wdata[6] (
+// Equation(s):
+// wdata[6] = DFFEAS((((\mdata[6]~6 ))), !GLOBAL(\msx_clk~combout ), VCC, , \wdata[0]~0_combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\mdata[6]~6 ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\wdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(wdata[6]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \wdata[6] .lut_mask = "ff00";
+defparam \wdata[6] .operation_mode = "normal";
+defparam \wdata[6] .output_mode = "reg_only";
+defparam \wdata[6] .register_cascade_mode = "off";
+defparam \wdata[6] .sum_lutc_input = "datac";
+defparam \wdata[6] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_97,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[6]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [6]),
+	.padio(maddr[6]));
+// synopsys translate_off
+defparam \maddr[6]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N8
+maxii_lcell \raddr[6] (
+// Equation(s):
+// raddr[6] = DFFEAS((((\maddr~combout [6]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\maddr~combout [6]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[6]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[6] .lut_mask = "ff00";
+defparam \raddr[6] .operation_mode = "normal";
+defparam \raddr[6] .output_mode = "reg_only";
+defparam \raddr[6] .register_cascade_mode = "off";
+defparam \raddr[6] .sum_lutc_input = "datac";
+defparam \raddr[6] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N1
+maxii_lcell \md[6]~reg0 (
+// Equation(s):
+// \md[6]~reg0_regout  = DFFEAS((\a0~combout  & (\md[6]~reg0_regout )) # (!\a0~combout  & (((raddr[6])))), !GLOBAL(\clk~combout ), VCC, , , wdata[6], , , \md[0]~32_combout )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(\md[6]~reg0_regout ),
+	.datac(wdata[6]),
+	.datad(raddr[6]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(\md[0]~32_combout ),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[6]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[6]~reg0 .lut_mask = "dd88";
+defparam \md[6]~reg0 .operation_mode = "normal";
+defparam \md[6]~reg0 .output_mode = "reg_only";
+defparam \md[6]~reg0 .register_cascade_mode = "off";
+defparam \md[6]~reg0 .sum_lutc_input = "datac";
+defparam \md[6]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X4_Y3_N5
+maxii_lcell \wdata[7] (
+// Equation(s):
+// wdata[7] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \wdata[0]~0_combout , \mdata[7]~7 , , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\mdata[7]~7 ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\wdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(wdata[7]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \wdata[7] .lut_mask = "0000";
+defparam \wdata[7] .operation_mode = "normal";
+defparam \wdata[7] .output_mode = "reg_only";
+defparam \wdata[7] .register_cascade_mode = "off";
+defparam \wdata[7] .sum_lutc_input = "datac";
+defparam \wdata[7] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_96,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[7]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [7]),
+	.padio(maddr[7]));
+// synopsys translate_off
+defparam \maddr[7]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N2
+maxii_lcell \raddr[7] (
+// Equation(s):
+// raddr[7] = DFFEAS((((\maddr~combout [7]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\maddr~combout [7]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[7]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[7] .lut_mask = "ff00";
+defparam \raddr[7] .operation_mode = "normal";
+defparam \raddr[7] .output_mode = "reg_only";
+defparam \raddr[7] .register_cascade_mode = "off";
+defparam \raddr[7] .sum_lutc_input = "datac";
+defparam \raddr[7] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N0
+maxii_lcell \md[7]~reg0 (
+// Equation(s):
+// \md[7]~reg0_regout  = DFFEAS((\a0~combout  & (\md[7]~reg0_regout )) # (!\a0~combout  & (((raddr[7])))), !GLOBAL(\clk~combout ), VCC, , , wdata[7], , , \md[0]~32_combout )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(\md[7]~reg0_regout ),
+	.datac(wdata[7]),
+	.datad(raddr[7]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(\md[0]~32_combout ),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[7]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[7]~reg0 .lut_mask = "dd88";
+defparam \md[7]~reg0 .operation_mode = "normal";
+defparam \md[7]~reg0 .output_mode = "reg_only";
+defparam \md[7]~reg0 .register_cascade_mode = "off";
+defparam \md[7]~reg0 .sum_lutc_input = "datac";
+defparam \md[7]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_99,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[8]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [8]),
+	.padio(maddr[8]));
+// synopsys translate_off
+defparam \maddr[8]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X5_Y2_N9
+maxii_lcell \raddr[8] (
+// Equation(s):
+// raddr[8] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , \maddr~combout [8], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\maddr~combout [8]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[8]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[8] .lut_mask = "0000";
+defparam \raddr[8] .operation_mode = "normal";
+defparam \raddr[8] .output_mode = "reg_only";
+defparam \raddr[8] .register_cascade_mode = "off";
+defparam \raddr[8] .sum_lutc_input = "datac";
+defparam \raddr[8] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X5_Y2_N5
+maxii_lcell \md[8]~reg0 (
+// Equation(s):
+// \md[8]~reg0_regout  = DFFEAS(((\a0~combout  & (\md[8]~reg0_regout )) # (!\a0~combout  & ((raddr[8])))), !GLOBAL(\clk~combout ), VCC, , , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(\a0~combout ),
+	.datac(\md[8]~reg0_regout ),
+	.datad(raddr[8]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[8]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[8]~reg0 .lut_mask = "f3c0";
+defparam \md[8]~reg0 .operation_mode = "normal";
+defparam \md[8]~reg0 .output_mode = "reg_only";
+defparam \md[8]~reg0 .register_cascade_mode = "off";
+defparam \md[8]~reg0 .sum_lutc_input = "datac";
+defparam \md[8]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_90,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[9]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [9]),
+	.padio(maddr[9]));
+// synopsys translate_off
+defparam \maddr[9]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N1
+maxii_lcell \raddr[9] (
+// Equation(s):
+// raddr[9] = DFFEAS((((\maddr~combout [9]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\maddr~combout [9]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[9]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[9] .lut_mask = "ff00";
+defparam \raddr[9] .operation_mode = "normal";
+defparam \raddr[9] .output_mode = "reg_only";
+defparam \raddr[9] .register_cascade_mode = "off";
+defparam \raddr[9] .sum_lutc_input = "datac";
+defparam \raddr[9] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N4
+maxii_lcell \md[9]~reg0 (
+// Equation(s):
+// \md[9]~reg0_regout  = DFFEAS((\a0~combout  & (((\md[9]~reg0_regout )))) # (!\a0~combout  & (((raddr[9])))), !GLOBAL(\clk~combout ), VCC, , , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(vcc),
+	.datac(\md[9]~reg0_regout ),
+	.datad(raddr[9]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[9]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[9]~reg0 .lut_mask = "f5a0";
+defparam \md[9]~reg0 .operation_mode = "normal";
+defparam \md[9]~reg0 .output_mode = "reg_only";
+defparam \md[9]~reg0 .register_cascade_mode = "off";
+defparam \md[9]~reg0 .sum_lutc_input = "datac";
+defparam \md[9]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_95,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[10]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [10]),
+	.padio(maddr[10]));
+// synopsys translate_off
+defparam \maddr[10]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N9
+maxii_lcell \raddr[10] (
+// Equation(s):
+// raddr[10] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , \maddr~combout [10], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\maddr~combout [10]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[10]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[10] .lut_mask = "0000";
+defparam \raddr[10] .operation_mode = "normal";
+defparam \raddr[10] .output_mode = "reg_only";
+defparam \raddr[10] .register_cascade_mode = "off";
+defparam \raddr[10] .sum_lutc_input = "datac";
+defparam \raddr[10] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N7
+maxii_lcell \md[10]~reg0 (
+// Equation(s):
+// \md[10]~reg0_regout  = DFFEAS((\a0~combout  & (((\md[10]~reg0_regout )))) # (!\a0~combout  & (((raddr[10])))), !GLOBAL(\clk~combout ), VCC, , , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(vcc),
+	.datac(\md[10]~reg0_regout ),
+	.datad(raddr[10]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[10]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[10]~reg0 .lut_mask = "f5a0";
+defparam \md[10]~reg0 .operation_mode = "normal";
+defparam \md[10]~reg0 .output_mode = "reg_only";
+defparam \md[10]~reg0 .register_cascade_mode = "off";
+defparam \md[10]~reg0 .sum_lutc_input = "datac";
+defparam \md[10]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_92,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[11]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [11]),
+	.padio(maddr[11]));
+// synopsys translate_off
+defparam \maddr[11]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N2
+maxii_lcell \raddr[11] (
+// Equation(s):
+// raddr[11] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , \maddr~combout [11], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\maddr~combout [11]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[11]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[11] .lut_mask = "0000";
+defparam \raddr[11] .operation_mode = "normal";
+defparam \raddr[11] .output_mode = "reg_only";
+defparam \raddr[11] .register_cascade_mode = "off";
+defparam \raddr[11] .sum_lutc_input = "datac";
+defparam \raddr[11] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N0
+maxii_lcell \md[11]~reg0 (
+// Equation(s):
+// \md[11]~reg0_regout  = DFFEAS((\a0~combout  & (((\md[11]~reg0_regout )))) # (!\a0~combout  & (((raddr[11])))), !GLOBAL(\clk~combout ), VCC, , , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(vcc),
+	.datac(\md[11]~reg0_regout ),
+	.datad(raddr[11]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[11]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[11]~reg0 .lut_mask = "f5a0";
+defparam \md[11]~reg0 .operation_mode = "normal";
+defparam \md[11]~reg0 .output_mode = "reg_only";
+defparam \md[11]~reg0 .register_cascade_mode = "off";
+defparam \md[11]~reg0 .sum_lutc_input = "datac";
+defparam \md[11]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_98,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[12]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [12]),
+	.padio(maddr[12]));
+// synopsys translate_off
+defparam \maddr[12]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N3
+maxii_lcell \raddr[12] (
+// Equation(s):
+// raddr[12] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , \maddr~combout [12], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\maddr~combout [12]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[12]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[12] .lut_mask = "0000";
+defparam \raddr[12] .operation_mode = "normal";
+defparam \raddr[12] .output_mode = "reg_only";
+defparam \raddr[12] .register_cascade_mode = "off";
+defparam \raddr[12] .sum_lutc_input = "datac";
+defparam \raddr[12] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N5
+maxii_lcell \md[12]~reg0 (
+// Equation(s):
+// \md[12]~reg0_regout  = DFFEAS((\a0~combout  & (((\md[12]~reg0_regout )))) # (!\a0~combout  & (((raddr[12])))), !GLOBAL(\clk~combout ), VCC, , , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(vcc),
+	.datac(\md[12]~reg0_regout ),
+	.datad(raddr[12]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[12]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[12]~reg0 .lut_mask = "f5a0";
+defparam \md[12]~reg0 .operation_mode = "normal";
+defparam \md[12]~reg0 .output_mode = "reg_only";
+defparam \md[12]~reg0 .register_cascade_mode = "off";
+defparam \md[12]~reg0 .sum_lutc_input = "datac";
+defparam \md[12]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_1,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[13]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [13]),
+	.padio(maddr[13]));
+// synopsys translate_off
+defparam \maddr[13]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N8
+maxii_lcell \raddr[13] (
+// Equation(s):
+// raddr[13] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , \maddr~combout [13], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\maddr~combout [13]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[13]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[13] .lut_mask = "0000";
+defparam \raddr[13] .operation_mode = "normal";
+defparam \raddr[13] .output_mode = "reg_only";
+defparam \raddr[13] .register_cascade_mode = "off";
+defparam \raddr[13] .sum_lutc_input = "datac";
+defparam \raddr[13] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X3_Y2_N6
+maxii_lcell \md[13]~reg0 (
+// Equation(s):
+// \md[13]~reg0_regout  = DFFEAS((\a0~combout  & (((\md[13]~reg0_regout )))) # (!\a0~combout  & (((raddr[13])))), !GLOBAL(\clk~combout ), VCC, , , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(\a0~combout ),
+	.datab(vcc),
+	.datac(\md[13]~reg0_regout ),
+	.datad(raddr[13]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[13]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[13]~reg0 .lut_mask = "f5a0";
+defparam \md[13]~reg0 .operation_mode = "normal";
+defparam \md[13]~reg0 .output_mode = "reg_only";
+defparam \md[13]~reg0 .register_cascade_mode = "off";
+defparam \md[13]~reg0 .sum_lutc_input = "datac";
+defparam \md[13]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_100,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[14]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [14]),
+	.padio(maddr[14]));
+// synopsys translate_off
+defparam \maddr[14]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X5_Y2_N8
+maxii_lcell \raddr[14] (
+// Equation(s):
+// raddr[14] = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , \maddr~combout [14], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\maddr~combout [14]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[14]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[14] .lut_mask = "0000";
+defparam \raddr[14] .operation_mode = "normal";
+defparam \raddr[14] .output_mode = "reg_only";
+defparam \raddr[14] .register_cascade_mode = "off";
+defparam \raddr[14] .sum_lutc_input = "datac";
+defparam \raddr[14] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X5_Y2_N4
+maxii_lcell \md[14]~reg0 (
+// Equation(s):
+// \md[14]~reg0_regout  = DFFEAS(((\a0~combout  & (\md[14]~reg0_regout )) # (!\a0~combout  & ((raddr[14])))), !GLOBAL(\clk~combout ), VCC, , , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(\a0~combout ),
+	.datac(\md[14]~reg0_regout ),
+	.datad(raddr[14]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[14]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[14]~reg0 .lut_mask = "f3c0";
+defparam \md[14]~reg0 .operation_mode = "normal";
+defparam \md[14]~reg0 .output_mode = "reg_only";
+defparam \md[14]~reg0 .register_cascade_mode = "off";
+defparam \md[14]~reg0 .sum_lutc_input = "datac";
+defparam \md[14]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_91,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \maddr[15]~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\maddr~combout [15]),
+	.padio(maddr[15]));
+// synopsys translate_off
+defparam \maddr[15]~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N3
+maxii_lcell \raddr[15] (
+// Equation(s):
+// raddr[15] = DFFEAS((((\maddr~combout [15]))), !GLOBAL(\msx_clk~combout ), VCC, , !\msltsl~combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\maddr~combout [15]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\msltsl~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(raddr[15]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \raddr[15] .lut_mask = "f0f0";
+defparam \raddr[15] .operation_mode = "normal";
+defparam \raddr[15] .output_mode = "reg_only";
+defparam \raddr[15] .register_cascade_mode = "off";
+defparam \raddr[15] .sum_lutc_input = "datac";
+defparam \raddr[15] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X5_Y3_N6
+maxii_lcell \md[15]~reg0 (
+// Equation(s):
+// \md[15]~reg0_regout  = DFFEAS(((\a0~combout  & (\md[15]~reg0_regout )) # (!\a0~combout  & ((raddr[15])))), !GLOBAL(\clk~combout ), VCC, , , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(\a0~combout ),
+	.datac(\md[15]~reg0_regout ),
+	.datad(raddr[15]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\md[15]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \md[15]~reg0 .lut_mask = "f3c0";
+defparam \md[15]~reg0 .operation_mode = "normal";
+defparam \md[15]~reg0 .output_mode = "reg_only";
+defparam \md[15]~reg0 .register_cascade_mode = "off";
+defparam \md[15]~reg0 .sum_lutc_input = "datac";
+defparam \md[15]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X6_Y3_N3
+maxii_lcell \rdata[0]~0 (
+// Equation(s):
+// \rdata[0]~0_combout  = (!\msltsl~combout  & (\a0~combout  & (!\mrd~combout )))
+
+	.clk(gnd),
+	.dataa(\msltsl~combout ),
+	.datab(\a0~combout ),
+	.datac(\mrd~combout ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(\rdata[0]~0_combout ),
+	.regout(),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rdata[0]~0 .lut_mask = "0404";
+defparam \rdata[0]~0 .operation_mode = "normal";
+defparam \rdata[0]~0 .output_mode = "comb_only";
+defparam \rdata[0]~0 .register_cascade_mode = "off";
+defparam \rdata[0]~0 .sum_lutc_input = "datac";
+defparam \rdata[0]~0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N8
+maxii_lcell \rdata[0] (
+// Equation(s):
+// rdata[0] = DFFEAS((((\md[0]~reg0_regout ))), !GLOBAL(\clk~combout ), VCC, , \rdata[0]~0_combout , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\md[0]~reg0_regout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\rdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(rdata[0]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rdata[0] .lut_mask = "ff00";
+defparam \rdata[0] .operation_mode = "normal";
+defparam \rdata[0] .output_mode = "reg_only";
+defparam \rdata[0] .register_cascade_mode = "off";
+defparam \rdata[0] .sum_lutc_input = "datac";
+defparam \rdata[0] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X6_Y3_N6
+maxii_lcell \mdata[7]~16 (
+// Equation(s):
+// \mdata[7]~16_combout  = (\msltsl~combout ) # (((!\mrd~combout )))
+
+	.clk(gnd),
+	.dataa(\msltsl~combout ),
+	.datab(vcc),
+	.datac(\mrd~combout ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(\mdata[7]~16_combout ),
+	.regout(),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mdata[7]~16 .lut_mask = "afaf";
+defparam \mdata[7]~16 .operation_mode = "normal";
+defparam \mdata[7]~16 .output_mode = "comb_only";
+defparam \mdata[7]~16 .register_cascade_mode = "off";
+defparam \mdata[7]~16 .sum_lutc_input = "datac";
+defparam \mdata[7]~16 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N6
+maxii_lcell \mdata[0]~reg0 (
+// Equation(s):
+// \mdata[0]~reg0_regout  = DFFEAS((((rdata[0]))), !GLOBAL(\msx_clk~combout ), VCC, , \mdata[7]~16_combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(rdata[0]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\mdata[7]~16_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\mdata[0]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mdata[0]~reg0 .lut_mask = "ff00";
+defparam \mdata[0]~reg0 .operation_mode = "normal";
+defparam \mdata[0]~reg0 .output_mode = "reg_only";
+defparam \mdata[0]~reg0 .register_cascade_mode = "off";
+defparam \mdata[0]~reg0 .sum_lutc_input = "datac";
+defparam \mdata[0]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N3
+maxii_lcell \rdata[1] (
+// Equation(s):
+// rdata[1] = DFFEAS(GND, !GLOBAL(\clk~combout ), VCC, , \rdata[0]~0_combout , \md[1]~reg0_regout , , , VCC)
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\md[1]~reg0_regout ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\rdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(rdata[1]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rdata[1] .lut_mask = "0000";
+defparam \rdata[1] .operation_mode = "normal";
+defparam \rdata[1] .output_mode = "reg_only";
+defparam \rdata[1] .register_cascade_mode = "off";
+defparam \rdata[1] .sum_lutc_input = "datac";
+defparam \rdata[1] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N9
+maxii_lcell \mdata[1]~reg0 (
+// Equation(s):
+// \mdata[1]~reg0_regout  = DFFEAS((((rdata[1]))), !GLOBAL(\msx_clk~combout ), VCC, , \mdata[7]~16_combout , , , , )
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(rdata[1]),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\mdata[7]~16_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\mdata[1]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mdata[1]~reg0 .lut_mask = "ff00";
+defparam \mdata[1]~reg0 .operation_mode = "normal";
+defparam \mdata[1]~reg0 .output_mode = "reg_only";
+defparam \mdata[1]~reg0 .register_cascade_mode = "off";
+defparam \mdata[1]~reg0 .sum_lutc_input = "datac";
+defparam \mdata[1]~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N4
+maxii_lcell \rdata[2] (
+// Equation(s):
+// rdata[2] = DFFEAS(GND, !GLOBAL(\clk~combout ), VCC, , \rdata[0]~0_combout , \md[2]~reg0_regout , , , VCC)
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\md[2]~reg0_regout ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\rdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(rdata[2]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rdata[2] .lut_mask = "0000";
+defparam \rdata[2] .operation_mode = "normal";
+defparam \rdata[2] .output_mode = "reg_only";
+defparam \rdata[2] .register_cascade_mode = "off";
+defparam \rdata[2] .sum_lutc_input = "datac";
+defparam \rdata[2] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N5
+maxii_lcell \mdata[2]~reg0 (
+// Equation(s):
+// \mdata[2]~reg0_regout  = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \mdata[7]~16_combout , rdata[2], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(rdata[2]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\mdata[7]~16_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\mdata[2]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mdata[2]~reg0 .lut_mask = "0000";
+defparam \mdata[2]~reg0 .operation_mode = "normal";
+defparam \mdata[2]~reg0 .output_mode = "reg_only";
+defparam \mdata[2]~reg0 .register_cascade_mode = "off";
+defparam \mdata[2]~reg0 .sum_lutc_input = "datac";
+defparam \mdata[2]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N0
+maxii_lcell \rdata[3] (
+// Equation(s):
+// rdata[3] = DFFEAS((((\md[3]~reg0_regout ))), !GLOBAL(\clk~combout ), VCC, , \rdata[0]~0_combout , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\md[3]~reg0_regout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\rdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(rdata[3]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rdata[3] .lut_mask = "ff00";
+defparam \rdata[3] .operation_mode = "normal";
+defparam \rdata[3] .output_mode = "reg_only";
+defparam \rdata[3] .register_cascade_mode = "off";
+defparam \rdata[3] .sum_lutc_input = "datac";
+defparam \rdata[3] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N2
+maxii_lcell \mdata[3]~reg0 (
+// Equation(s):
+// \mdata[3]~reg0_regout  = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \mdata[7]~16_combout , rdata[3], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(rdata[3]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\mdata[7]~16_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\mdata[3]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mdata[3]~reg0 .lut_mask = "0000";
+defparam \mdata[3]~reg0 .operation_mode = "normal";
+defparam \mdata[3]~reg0 .output_mode = "reg_only";
+defparam \mdata[3]~reg0 .register_cascade_mode = "off";
+defparam \mdata[3]~reg0 .sum_lutc_input = "datac";
+defparam \mdata[3]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N7
+maxii_lcell \rdata[4] (
+// Equation(s):
+// rdata[4] = DFFEAS(GND, !GLOBAL(\clk~combout ), VCC, , \rdata[0]~0_combout , \md[4]~reg0_regout , , , VCC)
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\md[4]~reg0_regout ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\rdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(rdata[4]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rdata[4] .lut_mask = "0000";
+defparam \rdata[4] .operation_mode = "normal";
+defparam \rdata[4] .output_mode = "reg_only";
+defparam \rdata[4] .register_cascade_mode = "off";
+defparam \rdata[4] .sum_lutc_input = "datac";
+defparam \rdata[4] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X2_Y3_N1
+maxii_lcell \mdata[4]~reg0 (
+// Equation(s):
+// \mdata[4]~reg0_regout  = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \mdata[7]~16_combout , rdata[4], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(rdata[4]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\mdata[7]~16_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\mdata[4]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mdata[4]~reg0 .lut_mask = "0000";
+defparam \mdata[4]~reg0 .operation_mode = "normal";
+defparam \mdata[4]~reg0 .output_mode = "reg_only";
+defparam \mdata[4]~reg0 .register_cascade_mode = "off";
+defparam \mdata[4]~reg0 .sum_lutc_input = "datac";
+defparam \mdata[4]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X6_Y3_N5
+maxii_lcell \rdata[5] (
+// Equation(s):
+// rdata[5] = DFFEAS((((\md[5]~reg0_regout ))), !GLOBAL(\clk~combout ), VCC, , \rdata[0]~0_combout , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\md[5]~reg0_regout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\rdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(rdata[5]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rdata[5] .lut_mask = "ff00";
+defparam \rdata[5] .operation_mode = "normal";
+defparam \rdata[5] .output_mode = "reg_only";
+defparam \rdata[5] .register_cascade_mode = "off";
+defparam \rdata[5] .sum_lutc_input = "datac";
+defparam \rdata[5] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X6_Y3_N2
+maxii_lcell \mdata[5]~reg0 (
+// Equation(s):
+// \mdata[5]~reg0_regout  = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \mdata[7]~16_combout , rdata[5], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(rdata[5]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\mdata[7]~16_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\mdata[5]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mdata[5]~reg0 .lut_mask = "0000";
+defparam \mdata[5]~reg0 .operation_mode = "normal";
+defparam \mdata[5]~reg0 .output_mode = "reg_only";
+defparam \mdata[5]~reg0 .register_cascade_mode = "off";
+defparam \mdata[5]~reg0 .sum_lutc_input = "datac";
+defparam \mdata[5]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X6_Y3_N4
+maxii_lcell \rdata[6] (
+// Equation(s):
+// rdata[6] = DFFEAS(GND, !GLOBAL(\clk~combout ), VCC, , \rdata[0]~0_combout , \md[6]~reg0_regout , , , VCC)
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\md[6]~reg0_regout ),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\rdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(rdata[6]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rdata[6] .lut_mask = "0000";
+defparam \rdata[6] .operation_mode = "normal";
+defparam \rdata[6] .output_mode = "reg_only";
+defparam \rdata[6] .register_cascade_mode = "off";
+defparam \rdata[6] .sum_lutc_input = "datac";
+defparam \rdata[6] .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X6_Y3_N8
+maxii_lcell \mdata[6]~reg0 (
+// Equation(s):
+// \mdata[6]~reg0_regout  = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \mdata[7]~16_combout , rdata[6], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(rdata[6]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\mdata[7]~16_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\mdata[6]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mdata[6]~reg0 .lut_mask = "0000";
+defparam \mdata[6]~reg0 .operation_mode = "normal";
+defparam \mdata[6]~reg0 .output_mode = "reg_only";
+defparam \mdata[6]~reg0 .register_cascade_mode = "off";
+defparam \mdata[6]~reg0 .sum_lutc_input = "datac";
+defparam \mdata[6]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: LC_X6_Y3_N7
+maxii_lcell \rdata[7] (
+// Equation(s):
+// rdata[7] = DFFEAS((((\md[7]~reg0_regout ))), !GLOBAL(\clk~combout ), VCC, , \rdata[0]~0_combout , , , , )
+
+	.clk(!\clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(vcc),
+	.datad(\md[7]~reg0_regout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\rdata[0]~0_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(rdata[7]),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \rdata[7] .lut_mask = "ff00";
+defparam \rdata[7] .operation_mode = "normal";
+defparam \rdata[7] .output_mode = "reg_only";
+defparam \rdata[7] .register_cascade_mode = "off";
+defparam \rdata[7] .sum_lutc_input = "datac";
+defparam \rdata[7] .synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X6_Y3_N9
+maxii_lcell \mdata[7]~reg0 (
+// Equation(s):
+// \mdata[7]~reg0_regout  = DFFEAS(GND, !GLOBAL(\msx_clk~combout ), VCC, , \mdata[7]~16_combout , rdata[7], , , VCC)
+
+	.clk(!\msx_clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(rdata[7]),
+	.datad(vcc),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\mdata[7]~16_combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\mdata[7]~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \mdata[7]~reg0 .lut_mask = "0000";
+defparam \mdata[7]~reg0 .operation_mode = "normal";
+defparam \mdata[7]~reg0 .output_mode = "reg_only";
+defparam \mdata[7]~reg0 .register_cascade_mode = "off";
+defparam \mdata[7]~reg0 .sum_lutc_input = "datac";
+defparam \mdata[7]~reg0 .synch_mode = "on";
+// synopsys translate_on
+
+// Location: PIN_30,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \cs~I (
+	.datain(!\cs~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(cs));
+// synopsys translate_off
+defparam \cs~I .operation_mode = "output";
+// synopsys translate_on
+
+// Location: PIN_53,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \rw~I (
+	.datain(\rw~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(rw));
+// synopsys translate_off
+defparam \rw~I .operation_mode = "output";
+// synopsys translate_on
+
+// Location: PIN_29,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \rmirq~I (
+	.datain(\rmirq~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(rmirq));
+// synopsys translate_off
+defparam \rmirq~I .operation_mode = "output";
+// synopsys translate_on
+
+// Location: PIN_28,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \rbusdir~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(),
+	.padio(rbusdir));
+// synopsys translate_off
+defparam \rbusdir~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_26,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \rint~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(),
+	.padio(rint));
+// synopsys translate_off
+defparam \rint~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_85,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \miorq~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(),
+	.padio(miorq));
+// synopsys translate_off
+defparam \miorq~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_84,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \mbusdir~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(),
+	.padio(mbusdir));
+// synopsys translate_off
+defparam \mbusdir~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_75,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \mcs1~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(),
+	.padio(mcs1));
+// synopsys translate_off
+defparam \mcs1~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_74,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \mcs2~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(),
+	.padio(mcs2));
+// synopsys translate_off
+defparam \mcs2~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_77,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \mcs12~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(),
+	.padio(mcs12));
+// synopsys translate_off
+defparam \mcs12~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_82,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \mint~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(),
+	.padio(mint));
+// synopsys translate_off
+defparam \mint~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_81,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mwait~I (
+	.datain(\mwait~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(mwait));
+// synopsys translate_off
+defparam \mwait~I .operation_mode = "output";
+// synopsys translate_on
+
+// Location: PIN_83,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \mm1~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(),
+	.padio(mm1));
+// synopsys translate_off
+defparam \mm1~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_89,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \mreset~I (
+	.datain(vcc),
+	.oe(vcc),
+	.combout(),
+	.padio(mreset));
+// synopsys translate_off
+defparam \mreset~I .open_drain_output = "true";
+defparam \mreset~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_36,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[0]~I (
+	.datain(\md[0]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[0]));
+// synopsys translate_off
+defparam \md[0]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_39,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[1]~I (
+	.datain(\md[1]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[1]));
+// synopsys translate_off
+defparam \md[1]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_56,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[2]~I (
+	.datain(\md[2]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[2]));
+// synopsys translate_off
+defparam \md[2]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_57,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[3]~I (
+	.datain(\md[3]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[3]));
+// synopsys translate_off
+defparam \md[3]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_55,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[4]~I (
+	.datain(\md[4]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[4]));
+// synopsys translate_off
+defparam \md[4]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_37,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[5]~I (
+	.datain(\md[5]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[5]));
+// synopsys translate_off
+defparam \md[5]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_35,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[6]~I (
+	.datain(\md[6]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[6]));
+// synopsys translate_off
+defparam \md[6]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_38,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[7]~I (
+	.datain(\md[7]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[7]));
+// synopsys translate_off
+defparam \md[7]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_40,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[8]~I (
+	.datain(\md[8]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[8]));
+// synopsys translate_off
+defparam \md[8]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_43,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[9]~I (
+	.datain(\md[9]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[9]));
+// synopsys translate_off
+defparam \md[9]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_47,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[10]~I (
+	.datain(\md[10]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[10]));
+// synopsys translate_off
+defparam \md[10]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_41,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[11]~I (
+	.datain(\md[11]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[11]));
+// synopsys translate_off
+defparam \md[11]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_34,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[12]~I (
+	.datain(\md[12]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[12]));
+// synopsys translate_off
+defparam \md[12]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_33,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[13]~I (
+	.datain(\md[13]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[13]));
+// synopsys translate_off
+defparam \md[13]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_54,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[14]~I (
+	.datain(\md[14]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[14]));
+// synopsys translate_off
+defparam \md[14]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+// Location: PIN_52,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \md[15]~I (
+	.datain(\md[15]~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(md[15]));
+// synopsys translate_off
+defparam \md[15]~I .operation_mode = "bidir";
+// synopsys translate_on
+
+endmodule
